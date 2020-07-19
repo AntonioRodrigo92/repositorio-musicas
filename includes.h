@@ -64,7 +64,7 @@ typedef struct {
 		Tmusica musica;
 		char info1[250];
 		int valor1;
-		int caralhinho;
+		int car;
 	} dados;
 } MsgServer2Ouvinte;
 
