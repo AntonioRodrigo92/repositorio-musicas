@@ -91,7 +91,7 @@ void mensagem1(){
 		if( s.dados.valor1==99){
 			break;
 		}
-		if( s.dados.caralhinho == 1 ){
+		if( s.dados.car == 1 ){
 			printf("%s  %s\n",s.dados.musica.ID_MUS, s.dados.musica.titulo);
 		}
 		else{
@@ -128,7 +128,7 @@ void mensagem2(){
         }
 		printf("recebi ? %d\n", status2);
 		
-		if( s.dados.caralhinho == 1 ){
+		if( s.dados.car == 1 ){
             printf("A ouvir: %s  %s\n",s.dados.musica.ID_MUS, s.dados.musica.titulo);
         }
         else{
@@ -162,7 +162,7 @@ void mensagem3(){
 	exit_on_error(di,"ERRO NO MSGET2 DE MEN3");
 	status2 = msgrcv(di,&s,sizeof(s)-sizeof(s.tipo),m.dados.myid,0);
 	exit_on_error(status2,"ERRO AO RECEBER DE MEN3");
-	if(s.dados.caralhinho==1){
+	if(s.dados.car==1){
 		printf("%s\n ", s.dados.info1);
 	}
 	else{
@@ -191,7 +191,7 @@ void mensagem0(){
 //	printf("o status rec0%d\n", status2);
 	exit_on_error(status2,"ERRO AO RECEBER DE MEN0");
 	printf("%s \n", s.dados.info1);
-	if(s.dados.caralhinho==1){
+	if(s.dados.car==1){
 		exit(1);
 	}
 }
@@ -199,7 +199,7 @@ void mensagem0(){
 void receberlog( MsgServer2Ouvinte so){
   //  printf("a respostas de num %d\n", so.dados.valor1);
 
-    if(so.dados.caralhinho==0){
+    if(so.dados.car==0){
 
         printf( "OUVINTE NAO IDENTIFICADO NA MEMORIA\n");
         exit(1);
@@ -232,13 +232,13 @@ void main(){
 //	printf("tipo do m %d\n", m.tipo);
 //	printf("status2 = %d\n", status2);
 	exit_on_error(status2,"ERRO AO RECEBER\n");
-//	printf("a respostas de status %d\n", so.dados.caralhinho);
+//	printf("a respostas de status %d\n", so.dados.car);
 	receberlog(so);
 
 
 
 
-//	if(so.dados.caralhinho==0){
+//	if(so.dados.car==0){
 
 //		printf( "OUVINTE NAO IDENTIFICADO NA MEMORIA\n");
 //		exit(1);
