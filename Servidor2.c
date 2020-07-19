@@ -177,7 +177,7 @@ void reslist(MsgOuvinte2Server m, int id){
 						musica.top=mus[a].top;
 						s.dados.musica=musica;
 						temp=1;
-						s.dados.caralhinho=temp;
+						s.dados.car=temp;
 						s.tipo=m.dados.myid;
 						printf("criei a mensagem\n");
 						status = msgsnd(id,&s,sizeof(s)-sizeof(s.tipo),0);
@@ -191,7 +191,7 @@ void reslist(MsgOuvinte2Server m, int id){
 	if(temp!=1){
 		MsgServer2Ouvinte s;
 		s.tipo=m.dados.myid;
-        s.dados.caralhinho=0;
+        s.dados.car=0;
 		status = msgsnd(id, &s, sizeof(s)-sizeof(s.tipo),0);
         exit_on_error(status,"ERRO AO ENVIAR LIST PROB");
 
@@ -244,7 +244,7 @@ void resouvir(MsgOuvinte2Server m, int id ){
                         musica.top=mus[a].top;
                         s.dados.musica=musica;
                         temp=1;
-                        s.dados.caralhinho=temp;
+                        s.dados.car=temp;
                         s.tipo=m.dados.myid;
 						printf("criei a mensagem\n");
                         status = msgsnd(id,&s,sizeof(s)-sizeof(s.tipo),0);
@@ -261,7 +261,7 @@ void resouvir(MsgOuvinte2Server m, int id ){
 
     if(temp!=1){
 		MsgServer2Ouvinte s;
-        s.dados.caralhinho=0;
+        s.dados.car=0;
 		s.tipo=m.dados.myid;
 		status = msgsnd(id, &s, sizeof(s)-sizeof(s.tipo),0);
 		exit_on_error(status,"ERRO AO ENVIAR OUVIR PROB");
@@ -296,8 +296,8 @@ void reslog(MsgOuvinte2Server m, int id){
 				printf("valor do temp %d\n", temp);
 				s.dados.valor1=ouv[u].num;
 				strcpy(s.dados.info1,"sucesso");
-				s.dados.caralhinho=temp;;
-				printf("valor do s.dados.status %d\n", s.dados.caralhinho);
+				s.dados.car=temp;;
+				printf("valor do s.dados.status %d\n", s.dados.car);
 				printf("num mem%d\n", s.dados.valor1);
 				printf("a mensagem %s\n", s.dados.info1);
 		}
@@ -311,8 +311,8 @@ void reslog(MsgOuvinte2Server m, int id){
 	if( temp != 1 ){
 		printf("temp em if %d\n", temp);
 
-		s.dados.caralhinho=0;
-		printf("status em if %d\n", s.dados.caralhinho);
+		s.dados.car=0;
+		printf("status em if %d\n", s.dados.car);
 	}
 	int status;
 	status = msgsnd(id, &s, sizeof(s)-sizeof(s.tipo),0);
@@ -338,7 +338,7 @@ void resget(MsgOuvinte2Server m, int id){
 	for (int u = 0; u < MAX_PL; u++) {
         if(strcmp(pl[u].nome, "vazio") != 0 && strcmp(pl[u].nome, m.dados.info1) == 0){
 			temp=1;
-			s.dados.caralhinho=temp;
+			s.dados.car=temp;
 		
 			for (int a = 0; a < MAX_OUV; a++) {	
 				if(strcmp(ouv[a].nick, m.dados.info2) == 0){
@@ -376,7 +376,7 @@ void resget(MsgOuvinte2Server m, int id){
     up_sem_ouvinte();	
 
 	if(temp!=1){
-		s.dados.caralhinho=0;
+		s.dados.car=0;
 	}
 	status = msgsnd(id, &s, sizeof(s)-sizeof(s.tipo),0);
     exit_on_error(status, "ERRO AO ENVIAR GET");
@@ -385,7 +385,7 @@ void reslogout(MsgOuvinte2Server m, int id){
 	MsgServer2Ouvinte s;
 	int temp, status;
 	s.tipo=m.dados.myid;
-	s.dados.caralhinho=1;
+	s.dados.car=1;
 	printf("a preparar mensagem\n");
 	strcpy(s.dados.info1,"a desligar ouvinte");	
 //	id = msgget(0xa873060, 0666 | IPC_CREAT | IPC_EXCL);
